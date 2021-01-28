@@ -36,7 +36,7 @@ CourseRouter.get("/details/:id", async (request, response) => {
   try {
     const course = await courseModel
       .findById(request.params.id)
-      .populated("list.id")
+      .populate("list.id")
       .exec();
     if (!course) {
       response.send("Course Not Founded");
