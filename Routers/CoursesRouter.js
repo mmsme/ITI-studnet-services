@@ -34,7 +34,10 @@ CourseRouter.post("/add", async (request, response) => {
 // get Course By id
 CourseRouter.get("/details/:id", async (request, response) => {
   try {
-    const course = await courseModel.findById(request.params.id).exec();
+    const course = await courseModel
+      .findById(request.params.id)
+      .populated("list.id")
+      .exec();
     if (!course) {
       response.send("Course Not Founded");
       return;
