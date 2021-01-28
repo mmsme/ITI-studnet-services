@@ -1,0 +1,11 @@
+
+<body>
+    <form action="/departments/edit/<%=dept._id%>" method="post">
+
+    <!-- <input type="file" name="photofile"> -->
+    
+    <input type="text" name=id value=<%=dept._id%> disabled/><br/>
+    <input type="text" name="name" value=<%=dept.Name%>/><br/>
+   
+    <input type="submit" value="save">
+    </form>

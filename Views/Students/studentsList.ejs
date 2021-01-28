@@ -1,0 +1,29 @@
+
+    
+            <h3> Speakers List </h3>
+        <table class="table table-dark">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">name</th>
+                    <th scope="col">Department</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% speakers.forEach((speaker)=>{%>
+                    <tr>
+                      <td><%=speaker._id%></td>
+                      <td><%=speaker.Name%></td>
+                    <td><%=speaker.Department%></td>
+                     
+                      <td>
+                        <a class="btn btn-primary" href="/students/edit/<%=speaker._id%>">Edit</a>
+                        <a class="btn btn-danger" href="/students/delete/<%=speaker._id%>">Delete</a>
+                      </td>
+                    </tr>
+                  <%})%>
+                </tbody>
+              </table>
+      
+    
+  

@@ -1,0 +1,24 @@
+<html>
+    <head>
+
+
+    </head>
+    <body>
+            
+        <h3> events List </h3>
+        <table style="border:3px solid green"  class="table table-dark">
+                <tr><th>id</th><th>Name</th></tr>
+                <% depts.forEach((dept)=>{%>
+                    <tr>
+                        <td><%=dept._id%></td>
+                        <td><%=dept.Name%></td>
+                        <td>
+                            <a class="btn btn-primary" href="/departments/edit/<%=dept._id%>">Edit</a>
+                            <a class="btn btn-danger" href="/departments/delete/<%=dept._id%>">Delete</a>
+                          </td>
+                    </tr>
+                <%})%>
+               
+        
+       </table>
+
