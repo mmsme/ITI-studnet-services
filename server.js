@@ -57,6 +57,25 @@ server.use((request, response) => {
   response.send("Not Found");
 });
 
+server.use((err, req, res, next) => {
+  // Map the error and send it to user
+  // instanceof
+  // Check if this err is a mongoose err using instanceof
+
+  if (err instanceof mongoose.Error.ValidationError) {
+    return res.status(422).json(err.errors);
+  }
+  if (err.code === 11000) {
+    res
+      .status(422)
+      .json({ statusCode: "ValidationError", property: err.keyValue });
+  }
+  if (err.message === "UN_AUTHENTICATED") {
+    res.status(401).json({ statusCode: "UN_AUTHENTICATED" });
+  }
+  res.status(503).end();
+});
+
 server.listen(5600, () => {
   console.log("I am Listening ......");
 });
