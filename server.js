@@ -11,12 +11,18 @@ let express = require("express");
 const CourseRouter = require("./Routers/CoursesRouter");
 
 // express_ejs_layouts=require("express-ejs-layouts");
-mongoose.connect(
-  "mongodb://localhost:27017/itiDB",
-  { useFindAndModify: false },
-  { useNewUrlParser: true },
-  { useUnifiedTopology: true }
-);
+
+const uri =
+  "mongodb+srv://M_Mustafa:m3523m1998@cluster0.kr8bd.mongodb.net/ITIStudent";
+mongoose
+  .connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+  })
+  .then(() => console.log("Database Connected Successfully"))
+  .catch((err) => console.log(err));
+
 //open server
 let server = express();
 
@@ -69,9 +75,6 @@ server.use((err, req, res, next) => {
     res
       .status(422)
       .json({ statusCode: "ValidationError", property: err.keyValue });
-  }
-  if (err.message === "UN_AUTHENTICATED") {
-    res.status(401).json({ statusCode: "UN_AUTHENTICATED" });
   }
   res.status(503).end();
 });
